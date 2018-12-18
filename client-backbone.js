@@ -22,7 +22,7 @@ function TableContructor(){
             console.log(data);
             
             // parse header
-            let header = `<th scope="col">#</th>`;
+            let header = `<th>#</th>`;
             Object.keys(data[0]).forEach(fieldName => header += `<th scope="col">${fieldName}</th>`);
 
             // parse content
@@ -30,7 +30,7 @@ function TableContructor(){
                 let row;
                 Object.values(rawData).forEach(value => row += `<td>${value}</td>`) ;
                 row = `<tr> \
-                    <th scope=\"row\">${this.row_id}</th> \
+                    <td>${this.row_id}</td> \
                     ${row}
                 </tr>`;
 
