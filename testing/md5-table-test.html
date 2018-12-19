@@ -83,11 +83,14 @@
                   </div>
                   <div class="content table-responsive table-full-width">
                       <div class="button-group">
-                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-lg" id="student-plus-btn" style="color: transparent"
+                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-lg" id='student-plus-btn'
                                 data-toggle="modal" data-target="#insertStudentModal" data-action="Insert New Student">
                                 <i class="fa fa-plus" style="font-size:24px;color:green;"></i>
                             </button>
-                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-lg" id="student-trash-btn" style="color: transparent">
+                            <button type="button" rel="tooltip" title="refresh" class="btn-simple btn-lg" id='student-refresh-btn' style="background-color: transparent">
+                                <i class="fa fa-refresh" style="font-size:24px;"></i>
+                            </button>
+                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-lg" id='student-trash-btn'>
                                 <i class="fa fa-trash" style="font-size:24px;color:red;"></i>
                             </button>
                       </div>
@@ -186,16 +189,37 @@ $(document).ready(() => {
     // init table contructor
     var tableContructor = new TableContructor(7);
 
-    // Modal button
+    // refresh Table button
+    $('#student-refresh-btn').click(function(){
+        console.log("Refresh clicked...")
+        // callbacks to reconstruct table
+        const reconstructTable = (res)=>{
+            console.log("Recontructing...\n", res.params.data);
+            // reconstruct table
+            let resData = res.params.data;
+            var $targetHead = $('thead');
+            var $targetBody = $('tbody');
+            // display table content
+            var {header, content} = tableContructor.construct(true, resData);
+            $targetBody.html(content);
+            $targetHead.html(header);
+        };
+        // request GET with query to API
+        var resdata = getProfiles(STUDENTS_TABLE.TABLE_NAME, STUDENTS_TABLE.WID[0], reconstructTable);
+    
+    });
+
+    // Modal insert button
     $('#insertStudent-btn').click(function(){
-        // TODO : remove hardcoded array with jQuery multi element class selector
-        var field_ids = ['#student-name', '#student-matric', '#student-mobile', '#student-schedule'];
+        // TODO: remove hardcoded array with jQuery multi element class selector
+        let field_ids = ['#student-name', '#student-matric', '#student-mobile', '#student-schedule'];
         var values = field_ids.map((field_id)=> $(field_id).val());
         // insert new row
-        let { _, content:newRow } = tableContructor.construct(is_header=false, [values]);
-        $('tbody').append(newRow);
+        var { _, content:newRow } = tableContructor.construct(false, [values]);
+        var $targetSection = $('tbody');
+        $targetSection.append(newRow);
         // call Post method to API
-        postAttendance([[99, ...values]]);
+        postAttendance([[99, ...values]], STUDENTS_TABLE.TABLE_NAME, STUDENTS_TABLE.WID[0], null);
     });
 
     // Modals pop-up tuning 
@@ -212,12 +236,4 @@ $(document).ready(() => {
 }); // jQUery(document).ready()
 
 
-        // var name = $('#insertMatric').val();
-        // var job_id = $('#insertJI').val();
-        // var date = $('#insertDate').val();
-        // var day = $('#insertDay').val();
-        // var time_in = $('#insertTimein').val();
-        // var time_out = $('#insertTimeout').val(); 
-
-        // var values = [[98, name, job_id, date, day, time_in, time_out]];
 </script>
