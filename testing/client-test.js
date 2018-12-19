@@ -16,8 +16,6 @@ function TableContructor(start_row=1){
 
         // append and display html content
         this.construct = (is_header=false, data)=>{
-            console.log(data);
-            
             // parse header
             let header = `<th>#</th>`;
             if(is_header){ Object.keys(data[0]).forEach(fieldName => header += `<th scope="col">${fieldName}</th>`); }

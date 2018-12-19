@@ -34,7 +34,7 @@
 </head>
 
 <body>
-    
+    <!--    POP-UP MODAL     -->
     <div class="modal fade" id="insertStudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -72,88 +72,171 @@
         </div>
     </div>
 
-  <div class="content">
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card">
-                  <div class="header">
-                      <h4 class="title">Student Assistants 2018</h4>
-                      <p class="category">Students who are on duty in i-Hub facility</p>
-                  </div>
-                  <div class="content table-responsive table-full-width">
-                      <div class="button-group">
-                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-lg" id='student-plus-btn'
-                                data-toggle="modal" data-target="#insertStudentModal" data-action="Insert New Student">
-                                <i class="fa fa-plus" style="font-size:24px;color:green;"></i>
-                            </button>
-                            <button type="button" rel="tooltip" title="refresh" class="btn-simple btn-lg" id='student-refresh-btn' style="background-color: transparent">
-                                <i class="fa fa-refresh" style="font-size:24px;"></i>
-                            </button>
-                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-lg" id='student-trash-btn'>
-                                <i class="fa fa-trash" style="font-size:24px;color:red;"></i>
-                            </button>
-                      </div>
-                      <table class="table table-hover table-striped">
-                          <thead>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Matric</th>
-                            <th>Mobile</th>
-                            <th>Working Schedule</th>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>Dakota Rice</td>
-                                <td>U1675389J</td>
-                                <td>97378172</td>
-                                <td>Monday, 8 - 11 AM</td>
-                              </tr>
-                              <tr>                                        	
-                                  <td>2</td>
-                                <td>Minerva Hopper</td>
-                                <td>U1875126J</td>
-                                <td>81238172</td>
-                                <td>Monday, 1 - 5 PM</td>
-                              </tr>
-                              <tr>
-                                <td>3</td>
-                                <td>Sage Rodriguez</td>
-                                <td>U1726351J</td>
-                                <td>81268372</td>
-                                <td>Tuesday, 8 - 11 AM</td>
-                              </tr>
-                              <tr>
-                                <td>4</td>
-                                <td>Philip Chaney</td>
-                                <td>U1623187J</td>
-                                <td>98271362</td>
-                                <td>Tuesday, 1 - 5 PM</td>
-                              </tr>
-                              <tr>
-                                <td>5</td>
-                                <td>Doris Greene</td>
-                                <td>U1872512J</td>
-                                <td>81726145</td>
-                                <td>Wednesday, 8 - 11 AM</td>
-                              </tr>
-                              <tr>
-                                <td>6</td>
-                                <td>Mason Porter</td>
-                                <td>U1587253J</td>
-                                <td>98716253</td>
-                                <td>Wednesday, 1 - 5 PM</td>
-                              </tr>
-                          </tbody>
-                      </table>
+    <!--    STUDENTS TABLE      -->
+    <div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Student Assistants 2018</h4>
+                        <p class="category">Students who are on duty in i-Hub facility</p>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <div class="button-group">
+                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-lg" id='student-plus-btn'
+                                    data-toggle="modal" data-target="#insertStudentModal" data-action="Insert New Student">
+                                    <i class="fa fa-plus" style="font-size:24px;color:green;"></i>
+                                </button>
+                                <button type="button" rel="tooltip" title="refresh" class="btn-simple btn-lg" id='student-refresh-btn' style="background-color: transparent">
+                                    <i class="fa fa-refresh" style="font-size:24px;"></i>
+                                </button>
+                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-lg" id='student-trash-btn'>
+                                    <i class="fa fa-trash" style="font-size:24px;color:red;"></i>
+                                </button>
+                        </div>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Matric</th>
+                                <th>Mobile</th>
+                                <th>Working Schedule</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Dakota Rice</td>
+                                    <td>U1675389J</td>
+                                    <td>97378172</td>
+                                    <td>Monday, 8 - 11 AM</td>
+                                </tr>
+                                <tr>                                        	
+                                    <td>2</td>
+                                    <td>Minerva Hopper</td>
+                                    <td>U1875126J</td>
+                                    <td>81238172</td>
+                                    <td>Monday, 1 - 5 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Sage Rodriguez</td>
+                                    <td>U1726351J</td>
+                                    <td>81268372</td>
+                                    <td>Tuesday, 8 - 11 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Philip Chaney</td>
+                                    <td>U1623187J</td>
+                                    <td>98271362</td>
+                                    <td>Tuesday, 1 - 5 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Doris Greene</td>
+                                    <td>U1872512J</td>
+                                    <td>81726145</td>
+                                    <td>Wednesday, 8 - 11 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Mason Porter</td>
+                                    <td>U1587253J</td>
+                                    <td>98716253</td>
+                                    <td>Wednesday, 1 - 5 PM</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+    <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Student Assistants 2018</h4>
+                                <p class="category">Students who are on duty in i-Hub facility</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <div class="button-group">
+                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-lg" id='student-plus-btn'
+                                            data-toggle="modal" data-target="#insertStudentModal" data-action="Insert New Student">
+                                            <i class="fa fa-plus" style="font-size:24px;color:green;"></i>
+                                        </button>
+                                        <button type="button" rel="tooltip" title="refresh" class="btn-simple btn-lg" id='student-refresh-btn' style="background-color: transparent">
+                                            <i class="fa fa-refresh" style="font-size:24px;"></i>
+                                        </button>
+                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-lg" id='student-trash-btn'>
+                                            <i class="fa fa-trash" style="font-size:24px;color:red;"></i>
+                                        </button>
+                                </div>
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Matric</th>
+                                        <th>Mobile</th>
+                                        <th>Working Schedule</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Dakota Rice</td>
+                                            <td>U1675389J</td>
+                                            <td>97378172</td>
+                                            <td>Monday, 8 - 11 AM</td>
+                                        </tr>
+                                        <tr>                                        	
+                                            <td>2</td>
+                                            <td>Minerva Hopper</td>
+                                            <td>U1875126J</td>
+                                            <td>81238172</td>
+                                            <td>Monday, 1 - 5 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Sage Rodriguez</td>
+                                            <td>U1726351J</td>
+                                            <td>81268372</td>
+                                            <td>Tuesday, 8 - 11 AM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Philip Chaney</td>
+                                            <td>U1623187J</td>
+                                            <td>98271362</td>
+                                            <td>Tuesday, 1 - 5 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Doris Greene</td>
+                                            <td>U1872512J</td>
+                                            <td>81726145</td>
+                                            <td>Wednesday, 8 - 11 AM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>Mason Porter</td>
+                                            <td>U1587253J</td>
+                                            <td>98716253</td>
+                                            <td>Wednesday, 1 - 5 PM</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
 </body>
 </html>
 
