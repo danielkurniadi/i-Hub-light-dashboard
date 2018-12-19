@@ -1,9 +1,7 @@
 
 
 /**
- * CONSTANTS
- *  - TABLES
- *  - WORKSHEET_ID
+ * Client API connector
 */
 const STUDENTS_TABLE = { "TABLE_NAME": "STUDENTS_TABLE", "WID": [815095649, 987445403] };
 const ATTENDANCE_RECORDS = { "TABLE_NAME": "ATTENDANCE_RECORDS", "WID": [0, 119545118]};
@@ -12,36 +10,47 @@ const CONSTANTS = { STUDENTS_TABLE, ATTENDANCE_RECORDS }
 
 // Class Table Constructor
 function TableContructor(start_row=1){
-        this.row_id = start_row;
+    // row #
+    this.row_id = start_row;
 
-        // append and display html content
-        this.construct = (is_header=false, data)=>{
-            // parse header
-            let header = `<th>#</th>`;
-            if(is_header){ Object.keys(data[0]).forEach(fieldName => header += `<th scope="col">${fieldName}</th>`); }
+    // append and display html content
+    this.construct = (is_header=false, data)=>{
+        // parse header
+        let header = `<th>#</th>`;
+        if(is_header){ Object.keys(data[0]).forEach(fieldName => header += `<th scope="col">${fieldName}</th>`); }
 
-            // parse content
-            let content = data.reduce((rowStacks, rawData)=>{
-                let row;
-                Object.values(rawData).forEach(value => row += `<td>${value}</td>`) ;
-                row = `<tr> \
-                    <td>${this.row_id}</td> \
-                    ${row}
-                </tr>`;
-                this.row_id ++;
-                return rowStacks + row;
-            }, "");
-            
-            return { header, content };
-        }
-    }    
+        // parse content
+        let content = data.reduce((rowStacks, rawData)=>{
+            let row;
+            Object.keys(rawData).forEach(key => {
+                let value = rawData[key];
+                switch(key){
+                    case("date"):
+                        value = new Date(...value.slice(5,-1).split(',')) // string: "Date(20yy, mm, dd)" to new Date
+                        value = value.toDateString();
+                        break;
+                    default:
+                        break;
+                }
+                return row += `<td>${value}</td>`
+            }) ;
+            row = `<tr> \
+                <td>${this.row_id}</td> \
+                ${row}
+            </tr>`;
+            this.row_id ++;
+            return rowStacks + row;
+        }, "");
+        
+        return { header, content };
+    };
+};
 
 const tableConstructor = new TableContructor();
 
 /** getProfiles()
  * TODO:
- *  - Refactor getProfiles()
- *  - Add doc and wid params
+ *  - query 
  * @param {string} doc: document name of the google Sheet
  * @param {number} wid: worksheet id in the google Sheet 
  * @param {function} callback: (optional) a function to be called after the API call
@@ -54,18 +63,29 @@ function getProfiles(doc, wid, callback, condition=null, n_limit=10000,){
     if(condition){ query_cond = ` WHERE ${condition.col} \'${condition.value}\'`; }
     // parse limit amount
     let query_limit = ` LIMIT ${n_limit}`;
-    // call API
+    // configure query body and target table
+    let query_body, table_id;
+    switch(doc){
+        case STUDENTS_TABLE.TABLE_NAME:
+            query_body = "SELECT B, C, D, E, F ";
+            table_id = "students-table";
+            break;
+        case ATTENDANCE_RECORDS.TABLE_NAME:
+            query_body = "SELECT B, C, D, E, G, H, I";
+            table_id = "attendance-table";
+    }
+    // call API GET with query method
     blockspring.runParsed("serversideapi", 
             { 
                 "method": 'GET', 
                 "doc_name": doc, 
                 "worksheet_id": wid,
-                "query": "SELECT B, C, D, E, F" + query_cond + query_limit //"SELECT B, C, D, E, F WHERE C CONTAINS"  + matric
+                "query": query_body + query_cond + query_limit //"SELECT B, C, D, E, F WHERE C CONTAINS"  + matric
             }, 
             function(res){
                 // return header and content in tabular form
                 // return tableContructor.construct(res.params.data);
-                if(callback){ callback(res); }
+                if(callback){ callback(table_id, res); }
                 return res.params.data;
     });   
 };
@@ -78,7 +98,7 @@ function getProfiles(doc, wid, callback, condition=null, n_limit=10000,){
  * @param {function} callback: (optional) a function to be called after the API call
  */
 function postAttendance(values, doc, wid, callback){
-    // call API
+    // call API POST method
     blockspring.runParsed("serversideapi",
             {
                 "method": 'POST',
