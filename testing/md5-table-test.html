@@ -47,30 +47,31 @@
             <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                  <input type="text" class="form-control" id="recipient-name">
+                  <label for="student-name" class="col-form-label">Student Name</label>
+                  <input type="text" class="form-control" id="student-name">
                 </div>
                 <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                    <label for="student-matric" class="col-form-label">Matric Number</label>
+                    <input type="text" class="form-control" id="student-matric">
                 </div>
                 <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                    <label for="student-mobile" class="col-form-label">Mobile Number</label>
+                    <input type="text" class="form-control" id="student-mobile">
                 </div>
                 <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                    <label for="student-schedule" class="col-form-label">Working Schedule</label>
+                    <input type="text" class="form-control" id="student-schedule" value="eg: Monday, 11-8 PM">
                 </div>
               </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #6c757d;border-color: #6c757d">Close</button>
-              <button type="button" class="btn btn-primary" style="background-color: #007bff;border-color: #007bff; color:#ffffff">Send message</button>
+              <button type="button" class="btn btn-primary" id="insertStudent-btn" style="background-color: #007bff;border-color: #007bff; color:#ffffff">Send message</button>
             </div>
           </div>
         </div>
     </div>
+
   <div class="content">
   <div class="container-fluid">
       <div class="row">
@@ -92,7 +93,7 @@
                       </div>
                       <table class="table table-hover table-striped">
                           <thead>
-                              <th>#</th>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Matric</th>
                             <th>Mobile</th>
@@ -183,10 +184,19 @@
 // jQuery convention for running when the document has been fully loaded:
 $(document).ready(() => {
     // init table contructor
-    var tableContructor = new TableContructor();
+    var tableContructor = new TableContructor(7);
 
     // Modal button
-    $()
+    $('#insertStudent-btn').click(function(){
+        // TODO : remove hardcoded array with jQuery multi element class selector
+        var field_ids = ['#student-name', '#student-matric', '#student-mobile', '#student-schedule'];
+        var values = field_ids.map((field_id)=> $(field_id).val());
+        // insert new row
+        let { _, content:newRow } = tableContructor.construct(is_header=false, [values]);
+        $('tbody').append(newRow);
+        // call Post method to API
+        postAttendance([[99, ...values]]);
+    });
 
     // Modals pop-up tuning 
     $('#insertStudentModal').on('show.bs.modal', function (event) {
@@ -195,8 +205,7 @@ $(document).ready(() => {
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this)
         modal.find('.modal-title').text(action)
-    })
-
+    });
 
 
 
