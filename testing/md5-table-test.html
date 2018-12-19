@@ -30,33 +30,47 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
-        <!--   Core JS Files   -->
-  <script src="../assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
-	<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-	<!--  Charts Plugin -->
-	<script src="../assets/js/chartist.min.js"></script>
-
-  <!--  Notifications Plugin    -->
-  <script src="../assets/js/bootstrap-notify.js"></script>
-
-  <!--  Google Maps Plugin    -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
-  <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="../assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-  <script src="../assets/js/demo.js"></script>
-  
-  <!--    Javascript calling BlockSpring API     -->
-  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <script src="https://cdn.blockspring.com/blockspring.js"></script>
-  <script src="../client-backbone.js"></script>
 
 </head>
 
 <body>
+    
+    <div class="modal fade" id="insertStudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="insertStudentLabel">New message</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Recipient:</label>
+                  <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Recipient:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Recipient:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Recipient:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #6c757d;border-color: #6c757d">Close</button>
+              <button type="button" class="btn btn-primary" style="background-color: #007bff;border-color: #007bff; color:#ffffff">Send message</button>
+            </div>
+          </div>
+        </div>
+    </div>
   <div class="content">
   <div class="container-fluid">
       <div class="row">
@@ -68,12 +82,13 @@
                   </div>
                   <div class="content table-responsive table-full-width">
                       <div class="button-group">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-lg">
-                              <i class="fa fa-plus" style="font-size:24px;color:green"></i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-lg">
-                              <i class="fa fa-trash" style="font-size:24px;color:red"></i>
-                          </button>
+                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-lg" id="student-plus-btn" style="color: transparent"
+                                data-toggle="modal" data-target="#insertStudentModal" data-action="Insert New Student">
+                                <i class="fa fa-plus" style="font-size:24px;color:green;"></i>
+                            </button>
+                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-lg" id="student-trash-btn" style="color: transparent">
+                                <i class="fa fa-trash" style="font-size:24px;color:red;"></i>
+                            </button>
                       </div>
                       <table class="table table-hover table-striped">
                           <thead>
@@ -136,6 +151,64 @@
   </div>
 </div>
 </body>
-
-
 </html>
+
+<!--   Core JS Files   -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<!--    Javascript calling BlockSpring API     -->
+<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://cdn.blockspring.com/blockspring.js"></script>
+<script src="client-test.js"></script>
+
+<!--    Bootstrap Popper & Tooltip -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!--  Charts Plugin -->
+<script src="../assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="../assets/js/bootstrap-notify.js"></script>
+
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="../assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
+<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+<script src="../assets/js/demo.js"></script>
+
+<!--  JjQuery scripts -->
+<script>
+  
+// jQuery convention for running when the document has been fully loaded:
+$(document).ready(() => {
+    // init table contructor
+    var tableContructor = new TableContructor();
+
+    // Modal button
+    $()
+
+    // Modals pop-up tuning 
+    $('#insertStudentModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var action = button.data('action') // Extract info from data-* attributes
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text(action)
+    })
+
+
+
+
+}); // jQUery(document).ready()
+
+
+        // var name = $('#insertMatric').val();
+        // var job_id = $('#insertJI').val();
+        // var date = $('#insertDate').val();
+        // var day = $('#insertDay').val();
+        // var time_in = $('#insertTimein').val();
+        // var time_out = $('#insertTimeout').val(); 
+
+        // var values = [[98, name, job_id, date, day, time_in, time_out]];
+</script>
