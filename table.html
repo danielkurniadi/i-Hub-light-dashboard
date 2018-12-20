@@ -195,7 +195,19 @@
                                 <h4 class="title">Student Assistants 2018</h4>
                                 <p class="category">Students who are on duty in i-Hub facility</p>
                             </div>
-                            <div class="content table-responsive table-full-width">
+                            <div class="content table-responsive table-full-width">    
+                                <div class="button-group">
+                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-lg" id='student-plus-btn'
+                                        data-toggle="modal" data-target="#insertStudentModal" data-action="Insert New Student">
+                                        <i class="fa fa-plus" style="font-size:18px;color:green;"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="refresh" class="btn-simple btn-lg" id='student-refresh-btn' style="background-color: transparent">
+                                        <i class="fa fa-refresh" style="font-size:18px;"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-lg" id='student-trash-btn'>
+                                        <i class="fa fa-trash" style="font-size:18px;color:red;"></i>
+                                    </button>
+                                </div>
                                 <table class="table table-hover table-striped">
                                     <thead>
                                         <th>#</th>
