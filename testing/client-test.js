@@ -13,6 +13,19 @@ function TableContructor(start_row=1){
     // row #
     this.row_id = start_row;
 
+    // clean and format information
+    this.cleanFormat = (key, value)=>{
+        switch(key){
+            case("date"):
+                value = new Date(...value.slice(5,-1).split(',')); // string: "Date(20yy, mm, dd)" to new Date
+                value = value.toDateString();
+                break;
+            default:
+                break;
+        };
+        return value;
+    };
+
     // append and display html content
     this.construct = (is_header=false, data)=>{
         // parse header
@@ -24,14 +37,7 @@ function TableContructor(start_row=1){
             let row;
             Object.keys(rawData).forEach(key => {
                 let value = rawData[key];
-                switch(key){
-                    case("date"):
-                        value = new Date(...value.slice(5,-1).split(',')) // string: "Date(20yy, mm, dd)" to new Date
-                        value = value.toDateString();
-                        break;
-                    default:
-                        break;
-                }
+                value = this.cleanFormat(key, value);
                 return row += `<td>${value}</td>`
             }) ;
             row = `<tr> \
